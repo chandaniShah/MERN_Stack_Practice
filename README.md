@@ -1,2 +1,2 @@
 # MERN_Stack_Practice
-This repository is for learning and practicing MERN stack topics and have small tasks 
+This repository is for learning MERN stack topics and practicing small tasks 
