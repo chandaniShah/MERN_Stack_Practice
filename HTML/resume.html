@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <!-- Hello, World! -->
+     <form >
+       <fieldset>
+        <legend>Personal Information</legend>
+
+        <a href="#main">Go To main section</a>
+        
+        <br/>
+        <br/>
+        
+         <label for="username">Enter Username:</label>
+        <input type="text" id="username" placeholder="Username">
+
+        <br/>
+
+        <label for="password">Enter Password:</label>
+        <input type="password" id="password" placeholder="Password">
+
+        <br/>
+        <input type="submit" value="Submit">
+        <!-- <br/> -->
+        <button type="submit" >Login</button>
+
+        <br/>
+        <br/>
+
+        <label for="birthdate">Choose Birthdate:</label>
+        <input type="date" name="birthdate" id="birthdate">
+
+        <br/>
+        <br/>
+
+       </fieldset>
+       <section id="main">
+        <label for="snacks">Choose your favorite snack:</label>
+        <select name="snacks" id="snacks" multiple>
+            <option value="Chips">Chips</option>
+            <option value="Cookies">Cookies</option>
+            <option value="Candy">Candy</option>
+        </select>
+        
+        <br/>
+        <br/>
+
+        <!-- <label for="description">Describe yourself:</label> -->
+        <textarea name="description" id="description" placeholder="Describe yourself in 100 words..." cols="25" rows="10"></textarea>
+        <br/>
+        <br/>
+
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label>
+        <input type="radio" id="other" name="gender" value="other">
+        <label for="other">Other</label>
+</section>
+
+     </form>
+</body>
+</html>
