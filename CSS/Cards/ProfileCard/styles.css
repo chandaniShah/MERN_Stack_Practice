@@ -1,0 +1,246 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    height: 100vh;
+    background: #969db9 ;
+    overflow: hidden;
+}
+
+body::before{
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: yellow;
+    border-radius: 50%;
+
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+
+    animation: appear 0.8s ease-in-out forwards,
+    moveDown 0.6s 1s ease-in-out forwards,
+    puff 0.8s 1.8s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
+}
+
+@keyframes appear {
+    from{
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+    }
+    to{
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes moveDown {
+    0%{
+        top: 50%;
+        transform: translate(-50%, -50%) scale(1);
+        filter: blur(0px);
+    }
+    30%{
+        top: 100%;
+        transform: translate(-50%, -50%) scale(1);
+        filter: blur(3px);
+    }
+    60%{
+        top: 80%;
+        transform: translate(-50%, -50%);
+        filter: blur(1px);
+    }
+    80%{
+        top: 100%;
+        background: #f99be1;
+        transform: translate(-50%, -50%);
+        filter: blur(1px);
+    }
+    100%{
+        top: 50%;
+        background: #f99be1;
+        transform: translate(-50%, -50%);
+        filter: blur(8px);
+    }
+}
+
+@keyframes puff {
+    to{
+        background: #f99be1;
+        /* rad */
+        transform: translate(-50%, -50%) scale(50);
+    }
+}
+
+.mainContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(to top, #a6c1ee  0%, #f493d8 100%);
+  /* Animation */
+  opacity: 0;
+    transform: translateY(20px);
+    animation: contentAppear 0.5s 2.8s ease-in-out forwards;
+    animation-delay: 2.5s;
+}
+
+@keyframes contentAppear {
+    from{
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profileCard {
+  width: 300px;
+  height: 450px;
+  background-color: #fff;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  position: relative;
+  padding: 10px;
+}
+
+.cardImageElement {
+  width: 300px;
+  height: 120px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  object-fit: cover;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.profileImage {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  position: absolute;
+  top: 70px;
+  /* overflow: hidden; */
+  box-shadow: 0px 5px 10px grey;
+}
+
+.profileImageElement {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.profileImageElement:hover {
+  transform: scale(1.13);
+  box-shadow: 0px 5px 20px grey;
+}
+
+.profileDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profileName {
+  font-size: 1.3rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+}   
+.profileDetails p {
+  font-size: 0.7rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: grey;
+}
+
+.follow {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.followCount {
+  display: flex;
+  gap: 10px;
+  width: 80%;
+  margin-top: -35px;
+}
+
+.followers,
+.following {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px ;
+  transition: all 0.1s linear;
+}
+
+.followers:hover,
+.following:hover {
+    border-radius: 10px;
+  background-color: rgb(243, 236, 236);
+}
+
+.followCount div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.followCount div h3 {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: rgb(67, 152, 249);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.followCount div p {
+  font-size: 0.7rem;
+  color: grey;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 450;
+}
+
+.followButton{
+    width: 80%;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(67, 152, 249);
+    color: #fff;
+    font-size: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.followButton:hover{
+    background-color: rgb(25, 118, 210);
+    transform: scale(1.05);
+}
+
+.description{
+    font-size: 0.9rem;
+    color: grey;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    padding: 0 15px;
+    margin-top: -30px;
+}
