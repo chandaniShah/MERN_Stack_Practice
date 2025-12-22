@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mainContainer{
+    padding: 10px;
+    width: 100vw;
+    height: 100vh;
+    border: 1px solid grey;
+    background-color: rgb(148, 46, 46);
+}
+
+.containerItems{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+    grid-template-areas: "firstContainer firstContainer firstContainer"
+                         "secondContainer thirdContainer thirdContainer"
+                         "secondContainer fourthContainer fifthContainer";
+}
+
+.firstContainer{
+    grid-area: firstContainer;
+    background-color: rgb(246, 179, 107);
+}
+.secondContainer{
+    grid-area: secondContainer;
+    background-color: lightblue;
+}
+.thirdContainer{
+    grid-area: thirdContainer;
+    background-color: lightgreen;
+}
+.fourthContainer{
+    grid-area: fourthContainer;
+    background-color: lightcoral;
+}
+.fifthContainer{
+    grid-area: fifthContainer;
+    background-color: lightsalmon;
+}

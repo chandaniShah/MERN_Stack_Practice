@@ -1,0 +1,52 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+div{
+    border: 2px solid black;
+    /* line-height: 0; */
+    /* font-size: 0; */
+}
+
+.container1{
+    background-color: beige;
+    height: 3000px;
+    border: 2px solid blue;
+}
+
+.container2{
+    height: 3000px;
+    background-color: aquamarine;
+    border: 2px solid black;
+}
+
+.firstImage{
+    border: 2px solid red;
+    margin-right: 15px;
+    float: left;
+}
+
+.secondImage{
+    border: 2px solid red;
+    /* position: relative; */
+    float: right;
+    /* top: 10px; */
+}
+
+.thirdImage{
+    border: 2px solid red;
+    /* position: absolute; */
+    /* left: 50px; */
+    float: right;
+    clear: both;
+}
+
+.fourthImage{
+    border: 2px solid red;
+}
+
+.fifthImage{
+    border: 2px solid red;
+}

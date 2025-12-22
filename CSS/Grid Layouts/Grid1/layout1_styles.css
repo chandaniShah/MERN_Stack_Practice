@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mainContainer{
+    padding: 10px;
+    width: 100vw;
+    height: 100vh;
+    border: 1px solid grey;
+    background-color: rgb(148, 46, 46);
+}
+
+.containerItems{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid:  repeat(3, 1fr)/ auto-flow;
+    gap: 10px;
+}
+
+.firstContainer{
+    background-color: rgb(246, 179, 107);
+}
+.secondContainer{
+    background-color: lightblue;
+}
+.thirdContainer{
+    background-color: lightgreen;
+}
+.fourthContainer{
+    background-color: lightcoral;
+}
+.fifthContainer{
+    background-color: lightsalmon;
+}
+.sixthContainer{
+    background-color: lightyellow;
+}

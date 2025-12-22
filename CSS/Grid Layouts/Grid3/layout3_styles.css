@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.mainContainer {
+  padding: 10px;
+  width: 100vw;
+  height: 100vh;
+  border: 1px solid grey;
+  background-color: rgb(148, 46, 46);
+}
+
+.containerItems {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 1.6fr 1fr;
+  grid-template-areas:
+    "header header"
+    "two    three"
+    "four   four";
+}
+
+.firstContainer {
+    grid-area: header;
+  background-color: rgb(246, 179, 107);
+}
+.secondContainer {
+  grid-area: two;       
+  background-color: lightblue;
+}
+.thirdContainer {
+  grid-area: three;
+  background-color: lightgreen;
+}
+.fourthContainer {
+  grid-area: four;
+  background-color: lightcoral;
+}
