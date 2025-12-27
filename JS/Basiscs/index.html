@@ -1,12 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS Basics</title>
-</head>
-<body>
-    
-</body>
-<script src="index.js"></script>
+    <style>
+      .dark {
+        background: #222;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Toggle Dark / Light Mode -->
+    <button id="toggleBtn">Toggle Theme</button>
+    <br />
+    <br />
+    <!-- Counter -->
+    <button id="dec">-</button>
+    <span id="count">0</span>
+    <button id="inc">+</button>
+    <br />
+    <br />
+    <!-- Live Character Counter -->
+    <textarea id="text" maxlength="100"></textarea>
+    <p id="info">100 characters left</p>
+
+    <br />
+    <br />
+    <!-- Simple Todo List -->
+    <input id="taskInput" />
+    <button id="addBtn">Add</button>
+    <ul id="list"></ul>
+  </body>
+  <script src="index.js"></script>
 </html>
