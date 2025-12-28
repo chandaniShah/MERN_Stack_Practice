@@ -38,3 +38,17 @@ document.getElementById("addBtn").addEventListener("click", () => {
 
   input.value = "";
 });
+
+
+// Search & Filter List
+const searchInput = document.getElementById("search");
+const items = document.querySelectorAll("#list li");
+
+searchInput.addEventListener("input", () => {
+  const query = searchInput.value.toLowerCase();
+
+  items.forEach(item => {
+    const text = item.textContent.toLowerCase();
+    item.style.display = text.includes(query) ? "block" : "none";
+  });
+});
