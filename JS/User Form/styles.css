@@ -1,0 +1,176 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: #b8e0d2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  transition: all 0.5s ease;
+}
+
+/* WHEN USERS ARE LOADED */
+.page.side-layout {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+/* Smooth card animation */
+.card {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* Optional polish */
+.page.side-layout .card {
+  opacity: 1;
+}
+/* CARD */
+.card {
+  background: #f7fbf9;
+  width: 380px;
+  padding: 30px;
+  border-radius: 25px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* HEADINGS */
+.card h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #1f2d2a;
+}
+
+.card h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #1f2d2a;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #5f6f6a;
+  margin-bottom: 25px;
+}
+
+/* INPUTS */
+input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 0.9rem;
+}
+
+input:focus {
+  outline: none;
+  border-color: #8bcfb3;
+}
+
+/* BUTTONS */
+.primary-btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  background: #8bcfb3;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.primary-btn:hover {
+  background: #78bea2;
+}
+
+.secondary-btn {
+  width: 100%;
+  padding: 12px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* TEXT */
+.footer-text {
+  text-align: center;
+  font-size: 0.85rem;
+  margin-top: 15px;
+}
+
+.footer-text a {
+  color: #1f2d2a;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.hint {
+  font-size: 0.7rem;
+  color: gray;
+  margin-bottom: 8px;
+  display: none; /* hidden by default */
+}
+
+.hint.show {
+  display: block;
+}
+
+.error {
+  font-size: 0.75rem;
+  color: red;
+  margin-bottom: 8px;
+}
+
+.success {
+  color: green;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* API */
+#userList {
+  margin-top: 15px;
+  list-style: none;
+}
+
+#userList li {
+  padding: 6px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+/* API STATUS THEME */
+.api-status {
+  text-align: center;
+  font-size: 0.85rem;
+  margin-top: 12px;
+}
+
+/* Loading */
+.api-status.loading {
+  color: #78bea2; /* same green theme */
+}
+
+.api-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.small-btn {
+  padding: 10px;
+  font-size: 0.9rem;
+}

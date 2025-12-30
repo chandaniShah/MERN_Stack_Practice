@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="page">
+
+    <!-- SIGNUP CARD -->
+    <div class="card">
+      <h1>Create An Account</h1>
+      <p class="subtitle">
+        <!-- Create an account to enjoy all the services<br />
+        without any ads for free! -->
+      </p>
+
+      <form id="signupForm">
+        <input type="text" id="email" placeholder="Email Address" />
+        <div id="emailError" class="error"></div>
+
+        <input type="password" id="password" placeholder="Password" />
+        <div class="hint">
+          Min 8 chars, 1 uppercase, 1 lowercase, 1 special character
+        </div>
+        <div id="passwordError" class="error"></div>
+
+        <button type="submit" class="primary-btn">
+          Create Account
+        </button>
+
+        <p class="footer-text">
+          Already Have An Account?
+          <a href="#">Sign In</a>
+        </p>
+
+        <p id="formMessage"></p>
+      </form>
+    </div>
+
+    <!-- API FETCH CARD -->
+    <div class="card">
+  <h2>Fetch Users</h2>
+
+  <div class="api-actions">
+    <button id="fetchBtn" class="primary-btn small-btn">
+      Load Users
+    </button>
+
+    <button id="hideBtn" class="primary-btn small-btn">
+      Hide Users
+    </button>
+  </div>
+
+  <p id="apiStatus"></p>
+  <ul id="userList"></ul>
+</div>
+  <script src="script.js"></script>
+</body>
+</html>
