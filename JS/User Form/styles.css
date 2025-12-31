@@ -5,6 +5,7 @@
   font-family: Arial, sans-serif;
 }
 
+/* BODY LAYOUT - Centers the main page content */
 body {
   min-height: 100vh;
   background: #b8e0d2;
@@ -13,6 +14,7 @@ body {
   align-items: center;
 }
 
+/* PAGE WRAPPER - Controls vertical or horizontal layout */
 .page {
   display: flex;
   flex-direction: column;
@@ -20,22 +22,23 @@ body {
   transition: all 0.5s ease;
 }
 
-/* WHEN USERS ARE LOADED */
+/* Page layout when users are loaded - Moves cards side by side */
 .page.side-layout {
   flex-direction: row;
   align-items: flex-start;
 }
 
-/* Smooth card animation */
+/* CARD TRANSITIONS */
 .card {
   transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
-/* Optional polish */
+/* Optional visual polish when layout changes */
 .page.side-layout .card {
   opacity: 1;
 }
-/* CARD */
+
+/* CARD CONTAINER - Used for both signup and API cards */
 .card {
   background: #f7fbf9;
   width: 380px;
@@ -44,7 +47,7 @@ body {
   box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
-/* HEADINGS */
+/* CARD HEADINGS */
 .card h1 {
   text-align: center;
   margin-bottom: 10px;
@@ -57,6 +60,7 @@ body {
   color: #1f2d2a;
 }
 
+/* Subtitle text below main heading */
 .subtitle {
   text-align: center;
   font-size: 0.9rem;
@@ -64,7 +68,7 @@ body {
   margin-bottom: 25px;
 }
 
-/* INPUTS */
+/* INPUT FIELDS - Applies to email and password inputs */
 input {
   width: 100%;
   padding: 14px;
@@ -74,12 +78,13 @@ input {
   font-size: 0.9rem;
 }
 
+/* Input focus state */
 input:focus {
   outline: none;
   border-color: #8bcfb3;
 }
 
-/* BUTTONS */
+/* Button styles */
 .primary-btn {
   width: 100%;
   padding: 14px;
@@ -92,21 +97,18 @@ input:focus {
   cursor: pointer;
 }
 
+/* Button hover state */
 .primary-btn:hover {
   background: #78bea2;
 }
 
-.secondary-btn {
-  width: 100%;
-  padding: 12px;
-  background: #667eea;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
+/* Disabled submit button */
+.primary-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
 }
 
-/* TEXT */
+/* TEXT AND LINKS */
 .footer-text {
   text-align: center;
   font-size: 0.85rem;
@@ -119,30 +121,109 @@ input:focus {
   text-decoration: underline;
 }
 
+/* Password hint text - Hidden by default */
 .hint {
   font-size: 0.7rem;
   color: gray;
   margin-bottom: 8px;
-  display: none; /* hidden by default */
+  display: none;
 }
 
+/* Show hint when active */
 .hint.show {
   display: block;
 }
 
+/* Error message styling */
 .error {
   font-size: 0.75rem;
   color: red;
   margin-bottom: 8px;
 }
 
+/* Success message styling */
 .success {
   color: green;
   text-align: center;
   margin-top: 10px;
 }
 
-/* API */
+/* Password field and toggle icon */
+
+.password-wrapper {
+  position: relative;
+}
+
+/* Eye icon positioning */
+.eye {
+  position: absolute;
+  right: 15px;
+  top: 14px;
+  cursor: pointer;
+}
+
+/* Eye icon */
+.eye {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  right: 15px;
+  top: 42%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  opacity: 0.4;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='gray'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M3 12s3-5 9-5 9 5 9 5-3 5-9 5-9-5-9-5z'/%3E%3Ccircle cx='12' cy='12' r='3' stroke-width='1.5'/%3E%3C/svg%3E");
+}
+
+.eye:hover {
+  opacity: 0.7;
+}
+
+/* Eye icon when password is visible */
+.eye.hidden {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='gray'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M3 12s3-5 9-5 9 5 9 5-3 5-9 5-9-5-9-5z'/%3E%3Ccircle cx='12' cy='12' r='3' stroke-width='1.5'/%3E%3Cline x1='4' y1='4' x2='20' y2='20' stroke-width='1.5'/%3E%3C/svg%3E");
+}
+
+/* PASSWORD CHECKLIST AND STRENGTH METER */
+.checklist {
+  list-style: none;
+  font-size: 0.75rem;
+  margin-bottom: 10px;
+}
+
+.checklist li.valid {
+  color: green;
+}
+
+.strength {
+  width: 100%;
+  height: 6px;
+  background: #ddd;
+  border-radius: 10px;
+  margin-top: 8px;
+}
+
+/* Dynamic strength bar */
+.strength-bar {
+  height: 100%;
+  width: 0;
+  background-color: red;
+}
+
+/* Password helper - hidden by default */
+.password-helper {
+  display: none;
+}
+
+/* Show helper when user starts typing */
+.password-helper.show {
+  display: block;
+}
+
+/* API FETCH USERS SECTION */
+
 #userList {
   margin-top: 15px;
   list-style: none;
@@ -153,18 +234,17 @@ input:focus {
   border-bottom: 1px solid #ddd;
 }
 
-/* API STATUS THEME */
 .api-status {
   text-align: center;
   font-size: 0.85rem;
   margin-top: 12px;
 }
 
-/* Loading */
 .api-status.loading {
-  color: #78bea2; /* same green theme */
+  color: #78bea2;
 }
 
+/* API action buttons wrapper */
 .api-actions {
   display: flex;
   gap: 10px;

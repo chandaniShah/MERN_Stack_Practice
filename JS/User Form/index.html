@@ -2,33 +2,69 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>User Form</title>
+
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
+
 <div class="page">
 
-    <!-- SIGNUP CARD -->
+    <!-- =================== SIGNUP / CREATE ACCOUNT CARD ==================== -->
     <div class="card">
+
       <h1>Create An Account</h1>
+
       <p class="subtitle">
-        <!-- Create an account to enjoy all the services<br />
-        without any ads for free! -->
+        <!-- Create an account to enjoy all the services<br />-->
       </p>
 
+      <!-- Signup form -->
       <form id="signupForm">
+
         <input type="text" id="email" placeholder="Email Address" />
+
         <div id="emailError" class="error"></div>
 
-        <input type="password" id="password" placeholder="Password" />
+        <div class="password-wrapper">
+            <input type="password" id="password" placeholder="Password" />
+
+            <!-- Password visibility toggle -->
+            <!-- <span id="togglePassword" class="eye">👁️</span> -->
+            <span id="togglePassword" class="eye hidden"
+                  aria-label="Toggle password visibility"></span>
+        </div>
+
+        <!-- Password hint, Shown only when user starts typing -->
         <div class="hint">
           Min 8 chars, 1 uppercase, 1 lowercase, 1 special character
         </div>
+
+        <!-- Password helper container - checklist and strength meter, Hidden by default and shown during typing -->
+        <div class="password-helper" id="passwordHelper">
+
+          <ul class="checklist" id="passwordChecklist">
+              <li data-rule="length">  At least 8 characters</li>
+              <li data-rule="upper">  One uppercase letter</li>
+              <li data-rule="lower">  One lowercase letter</li>
+              <li data-rule="special">  One special character</li>
+          </ul>
+
+          <div class="strength">
+              <div class="strength-bar" id="strengthBar"></div>
+          </div>
+
+          <p id="strengthText"></p>
+        </div>
+
         <div id="passwordError" class="error"></div>
 
-        <button type="submit" class="primary-btn">
-          Create Account
+        <button type="submit" class="primary-btn" disabled>
+            Create Account
         </button>
 
         <p class="footer-text">
@@ -36,27 +72,38 @@
           <a href="#">Sign In</a>
         </p>
 
+        <!-- Form success message -->
         <p id="formMessage"></p>
+
       </form>
     </div>
 
-    <!-- API FETCH CARD -->
+    <!-- ===================== API FETCH USERS CARD ===================== -->
     <div class="card">
-  <h2>Fetch Users</h2>
 
-  <div class="api-actions">
-    <button id="fetchBtn" class="primary-btn small-btn">
-      Load Users
-    </button>
+      <h2>Fetch Users</h2>
 
-    <button id="hideBtn" class="primary-btn small-btn">
-      Hide Users
-    </button>
-  </div>
+      <div class="api-actions">
 
-  <p id="apiStatus"></p>
-  <ul id="userList"></ul>
+        <button id="fetchBtn" class="primary-btn small-btn">
+          Load Users
+        </button>
+
+        <button id="hideBtn" class="primary-btn small-btn">
+          Hide Users
+        </button>
+      </div>
+
+      <!-- API status text (loading / success / error) -->
+      <p id="apiStatus"></p>
+
+      <!-- List to display fetched users -->
+      <ul id="userList"></ul>
+    </div>
+
 </div>
-  <script src="script.js"></script>
+
+<script src="script.js"></script>
+
 </body>
 </html>
