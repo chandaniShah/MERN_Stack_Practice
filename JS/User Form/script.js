@@ -4,7 +4,7 @@ const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 
 // Password UI elements 
-const passwordHint = document.querySelector(".hint");
+// const passwordHint = document.querySelector(".hint");
 const passwordHelper = document.getElementById("passwordHelper");
 const togglePassword = document.getElementById("togglePassword");
 
@@ -73,7 +73,7 @@ form.addEventListener("submit", function (e) {
     form.reset();
 
     passwordHelper.classList.remove("show");
-    passwordHint.classList.remove("show");
+    // passwordHint.classList.remove("show");
     strengthText.textContent = "";
     strengthBar.style.width = "0";
   }
@@ -99,10 +99,10 @@ passwordInput.addEventListener("input", () => {
 
   // Show or hide hint and helper based on typing 
   if (passwordInput.value.length > 0) {
-    passwordHint.classList.add("show");
+    // passwordHint.classList.add("show");
     passwordHelper.classList.add("show");
   } else {
-    passwordHint.classList.remove("show");
+    // passwordHint.classList.remove("show");
     passwordHelper.classList.remove("show");
   }
 
