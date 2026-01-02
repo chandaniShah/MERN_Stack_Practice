@@ -254,3 +254,9 @@ input:focus {
   padding: 10px;
   font-size: 0.9rem;
 }
+
+.match {
+  color: green;
+  font-size: 0.75rem;
+  margin-bottom: 8px;
+}

@@ -28,6 +28,9 @@ const apiStatus = document.getElementById("apiStatus");
 const page = document.querySelector(".page");
 const userList = document.getElementById("userList");
 
+const confirmPasswordInput = document.getElementById("confirmPassword");
+const confirmPasswordMessage = document.getElementById("confirmPasswordMessage");
+
 
 /* FORM SUBMISSION LOGIC */
 
@@ -69,7 +72,7 @@ form.addEventListener("submit", function (e) {
   if (isValid) {
     formMessage.textContent = "Account created successfully!";
     formMessage.className = "success";
-
+    confirmPasswordMessage.textContent = "";
     form.reset();
 
     passwordHelper.classList.remove("show");
@@ -79,6 +82,18 @@ form.addEventListener("submit", function (e) {
   }
 });
 
+function updateSubmitState() {
+  const passwordsMatch =
+    passwordInput.value &&
+    confirmPasswordInput.value &&
+    passwordInput.value === confirmPasswordInput.value;
+
+  submitBtn.disabled = !(
+    emailInput.value &&
+    strengthText.textContent === "Strong" &&
+    passwordsMatch
+  );
+}
 
 /* Password visibility toggle */
 
@@ -152,6 +167,11 @@ passwordInput.addEventListener("input", () => {
     strengthText.textContent = "Strong";
   }
 
+  if (confirmPasswordInput.value) {
+    confirmPasswordInput.dispatchEvent(new Event("input"));
+  }
+
+  updateSubmitState();
   // Enable submit button only when password and email are valid
   submitBtn.disabled = !(passed === 4 && emailInput.value);
 });
@@ -166,6 +186,22 @@ emailInput.addEventListener("input", () => {
   );
 });
 
+confirmPasswordInput.addEventListener("input", () => {
+  if (!confirmPasswordInput.value) {
+    confirmPasswordMessage.textContent = "";
+    return;
+  }
+
+  if (confirmPasswordInput.value === passwordInput.value) {
+    confirmPasswordMessage.textContent = "Passwords match";
+    confirmPasswordMessage.className = "match";
+  } else {
+    confirmPasswordMessage.textContent = "Passwords do not match";
+    confirmPasswordMessage.className = "error";
+  }
+
+  updateSubmitState();
+});
 
 /* API FETCH LOGIC */
 
