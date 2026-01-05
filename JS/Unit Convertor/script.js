@@ -24,11 +24,12 @@ function kgToPounds(value) {
   return value * 2.20462;
 }
 
-convertBtn.addEventListener("click", () => {
+function performConversion() {
   const value = Number(valueInput.value);
 
+  /* Clear result if input is empty or invalid */
   if (!valueInput.value || value < 0) {
-    result.textContent = "Please enter a valid value.";
+    result.textContent = "";
     return;
   }
 
@@ -62,9 +63,19 @@ convertBtn.addEventListener("click", () => {
       break;
 
     default:
-      result.textContent = "Please select a conversion type.";
+      result.textContent = "";
       return;
   }
 
+  /* Display formatted output */
   result.textContent = `${value} ${fromUnit} = ${convertedValue.toFixed(2)} ${toUnit}`;
-});
+}
+
+/* Convert button (still works) */
+convertBtn.addEventListener("click", performConversion);
+
+/* Live conversion while typing */
+valueInput.addEventListener("input", performConversion);
+
+/* Live conversion when unit changes */
+conversionType.addEventListener("change", performConversion);
