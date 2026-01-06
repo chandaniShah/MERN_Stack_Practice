@@ -31,6 +31,16 @@ const userList = document.getElementById("userList");
 const confirmPasswordInput = document.getElementById("confirmPassword");
 const confirmPasswordMessage = document.getElementById("confirmPasswordMessage");
 
+const toast = document.getElementById("toast");
+
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000);
+}
 
 /* FORM SUBMISSION LOGIC */
 
@@ -70,8 +80,9 @@ form.addEventListener("submit", function (e) {
 
   /* If all validations pass */
   if (isValid) {
-    formMessage.textContent = "Account created successfully!";
-    formMessage.className = "success";
+    // formMessage.textContent = "Account created successfully!";
+    // formMessage.className = "success";
+    showToast("Account created successfully!");
     confirmPasswordMessage.textContent = "";
     form.reset();
 

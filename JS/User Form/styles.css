@@ -260,3 +260,27 @@ input:focus {
   font-size: 0.75rem;
   margin-bottom: 8px;
 }
+
+/* TOAST NOTIFICATION */
+
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #8bcfb3;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Visible state */
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
