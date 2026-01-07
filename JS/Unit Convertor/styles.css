@@ -85,3 +85,37 @@ select {
   background-repeat: no-repeat;
   background-position: right 14px center;
 }
+
+.history {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.history-header h3 {
+  font-size: 0.9rem;
+  color: #1f2d2a;
+}
+
+#clearHistoryBtn {
+  width: auto;
+  padding: 6px 10px;
+  font-size: 0.75rem;
+  border-radius: 8px;
+}
+
+#historyList {
+  list-style: none;
+  margin-top: 10px;
+}
+
+#historyList li {
+  font-size: 0.85rem;
+  padding: 6px 0;
+  border-bottom: 1px solid #ddd;
+}

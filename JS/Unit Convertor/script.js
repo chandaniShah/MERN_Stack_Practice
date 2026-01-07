@@ -2,9 +2,10 @@ const valueInput = document.getElementById("valueInput");
 const conversionType = document.getElementById("conversionType");
 const convertBtn = document.getElementById("convertBtn");
 const result = document.getElementById("result");
+const historyList = document.getElementById("historyList");
+const clearHistoryBtn = document.getElementById("clearHistoryBtn");
 
 
-/* Kilometers to Miles */
 function kmToMiles(value) {
   return value * 0.621371;
 }
@@ -24,10 +25,12 @@ function kgToPounds(value) {
   return value * 2.20462;
 }
 
+/* Conversion history */
+let history = [];
+
 function performConversion() {
   const value = Number(valueInput.value);
 
-  /* Clear result if input is empty or invalid */
   if (!valueInput.value || value < 0) {
     result.textContent = "";
     return;
@@ -63,19 +66,40 @@ function performConversion() {
       break;
 
     default:
-      result.textContent = "";
       return;
   }
 
-  /* Display formatted output */
-  result.textContent = `${value} ${fromUnit} = ${convertedValue.toFixed(2)} ${toUnit}`;
+  const output = `${value} ${fromUnit} = ${convertedValue.toFixed(2)} ${toUnit}`;
+  result.textContent = output;
+
+  addToHistory(output);
 }
 
-/* Convert button (still works) */
+function addToHistory(text) {
+  history.unshift(text);
+
+  if (history.length > 5) {
+    history.pop();
+  }
+
+  renderHistory();
+}
+
+function renderHistory() {
+  historyList.innerHTML = "";
+
+  history.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    historyList.appendChild(li);
+  });
+}
+
+clearHistoryBtn.addEventListener("click", () => {
+  history = [];
+  historyList.innerHTML = "";
+});
+
 convertBtn.addEventListener("click", performConversion);
-
-/* Live conversion while typing */
 valueInput.addEventListener("input", performConversion);
-
-/* Live conversion when unit changes */
 conversionType.addEventListener("change", performConversion);
