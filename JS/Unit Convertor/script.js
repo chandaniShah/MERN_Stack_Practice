@@ -4,7 +4,7 @@ const convertBtn = document.getElementById("convertBtn");
 const result = document.getElementById("result");
 const historyList = document.getElementById("historyList");
 const clearHistoryBtn = document.getElementById("clearHistoryBtn");
-
+const swapBtn = document.getElementById("swapBtn");
 
 function kmToMiles(value) {
   return value * 0.621371;
@@ -25,8 +25,26 @@ function kgToPounds(value) {
   return value * 2.20462;
 }
 
+function milesToKm(value) {
+  return value / 0.621371;
+}
+
+function feetToMeters(value) {
+  return value / 3.28084;
+}
+
+function inchesToCm(value) {
+  return value / 0.393701;
+}
+
+function poundsToKg(value) {
+  return value / 2.20462;
+}
+
 /* Conversion history */
 let history = [];
+let isSwapped = false; //controls swap direction
+let lastHistoryEntry = "";
 
 function performConversion() {
   const value = Number(valueInput.value);
@@ -42,27 +60,27 @@ function performConversion() {
 
   switch (conversionType.value) {
     case "kmToMiles":
-      convertedValue = kmToMiles(value);
-      fromUnit = "km";
-      toUnit = "miles";
+      convertedValue = isSwapped ? milesToKm(value) : kmToMiles(value);
+      fromUnit = isSwapped ? "miles" : "km";
+      toUnit = isSwapped ? "km" : "miles";
       break;
 
     case "mToFeet":
-      convertedValue = metersToFeet(value);
-      fromUnit = "meters";
-      toUnit = "feet";
+      convertedValue = isSwapped ? feetToMeters(value) : metersToFeet(value);
+      fromUnit = isSwapped ? "feet" : "meters";
+      toUnit = isSwapped ? "meters" : "feet";
       break;
 
     case "cmToInches":
-      convertedValue = cmToInches(value);
-      fromUnit = "cm";
-      toUnit = "inches";
+      convertedValue = isSwapped ? inchesToCm(value) : cmToInches(value);
+      fromUnit = isSwapped ? "inches" : "cm";
+      toUnit = isSwapped ? "cm" : "inches";
       break;
 
     case "kgToPounds":
-      convertedValue = kgToPounds(value);
-      fromUnit = "kg";
-      toUnit = "pounds";
+      convertedValue = isSwapped ? poundsToKg(value) : kgToPounds(value);
+      fromUnit = isSwapped ? "pounds" : "kg";
+      toUnit = isSwapped ? "kg" : "pounds";
       break;
 
     default:
@@ -71,18 +89,33 @@ function performConversion() {
 
   const output = `${value} ${fromUnit} = ${convertedValue.toFixed(2)} ${toUnit}`;
   result.textContent = output;
-
-  addToHistory(output);
+  return output;
 }
 
-function addToHistory(text) {
-  history.unshift(text);
+function commitToHistory(output) {
+  if (output !== lastHistoryEntry) {
+    history.unshift(output);
+    if (history.length > 5) history.pop();
+    renderHistory();
+    lastHistoryEntry = output;
+  }
+}
 
-  if (history.length > 5) {
-    history.pop();
+function swapUnits() {
+  if (!valueInput.value) return;
+
+  isSwapped = !isSwapped; // only swap direction
+  
+  // Update dropdown label text
+  const option = conversionType.selectedOptions[0];
+  const text = option.textContent;
+  const parts = text.split("→");
+
+  if (parts.length === 2) {
+    option.textContent = `${parts[1].trim()} → ${parts[0].trim()}`;
   }
 
-  renderHistory();
+  performConversion(true); // recompute using SAME input
 }
 
 function renderHistory() {
@@ -97,9 +130,32 @@ function renderHistory() {
 
 clearHistoryBtn.addEventListener("click", () => {
   history = [];
+  lastHistoryEntry = "";
   historyList.innerHTML = "";
 });
 
-convertBtn.addEventListener("click", performConversion);
-valueInput.addEventListener("input", performConversion);
-conversionType.addEventListener("change", performConversion);
+convertBtn.addEventListener("click", () => {
+  const output = performConversion();
+  if (output) commitToHistory(output);
+});
+
+valueInput.addEventListener("input", () => performConversion());
+
+conversionType.addEventListener("change", () => {
+  isSwapped = false;
+  performConversion(); 
+});
+swapBtn.addEventListener("click", () => {
+  if (!valueInput.value) return;
+
+  isSwapped = !isSwapped;
+
+  const option = conversionType.selectedOptions[0];
+  const parts = option.textContent.split("→");
+  if (parts.length === 2) {
+    option.textContent = `${parts[1].trim()} → ${parts[0].trim()}`;
+  }
+
+  const output = performConversion();
+  if (output) commitToHistory(output);
+});
