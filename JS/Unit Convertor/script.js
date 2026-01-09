@@ -5,6 +5,7 @@ const result = document.getElementById("result");
 const historyList = document.getElementById("historyList");
 const clearHistoryBtn = document.getElementById("clearHistoryBtn");
 const swapBtn = document.getElementById("swapBtn");
+const inputError = document.getElementById("inputError");
 
 function kmToMiles(value) {
   return value * 0.621371;
@@ -46,13 +47,56 @@ let history = [];
 let isSwapped = false; //controls swap direction
 let lastHistoryEntry = "";
 
-function performConversion() {
-  const value = Number(valueInput.value);
+function showInputError(message) {
+  inputError.textContent = message;
+  valueInput.classList.add("invalid", "shake");
 
-  if (!valueInput.value || value < 0) {
+  // Restart shake animation cleanly
+  valueInput.addEventListener(
+    "animationend",
+    () => valueInput.classList.remove("shake"),
+    { once: true }
+  );
+}
+
+function clearInputError() {
+  inputError.textContent = "";
+  valueInput.classList.remove("invalid");
+}
+
+function performConversion() {
+  // const value = Number(valueInput.value);
+
+  // if (!valueInput.value || value < 0) {
+  //   result.textContent = "";
+  //   return;
+  // }
+
+  const rawValue = valueInput.value.trim();
+
+  // Empty input → no error, no result
+  if (rawValue === "") {
+    clearInputError();
     result.textContent = "";
-    return;
+    return null;
   }
+
+  const value = Number(rawValue);
+
+  if (Number.isNaN(value)) {
+    showInputError("Enter a valid number");
+    result.textContent = "";
+    return null;
+  }
+
+  if (value < 0) {
+    showInputError("Value cannot be negative");
+    result.textContent = "";
+    return null;
+  }
+
+  clearInputError();
+
 
   let convertedValue;
   let fromUnit = "";

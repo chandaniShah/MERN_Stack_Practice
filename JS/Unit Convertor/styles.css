@@ -136,3 +136,29 @@ select {
   background: #78bea2;
 }
 
+.input-error {
+  color: #d64545;
+  font-size: 0.85rem;
+  margin-top: -8px;
+  margin-bottom: 10px;
+  min-height: 1em;
+}
+
+input.invalid {
+  border-color: #d64545;
+}
+
+/* Shake animation */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+  100% { transform: translateX(0); }
+}
+
+input.shake {
+  animation: shake 0.3s ease;
+}
+
