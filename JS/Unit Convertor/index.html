@@ -15,7 +15,7 @@
       id="valueInput"
       placeholder="Enter value"
     />
-    
+
     <p id="inputError" class="input-error" aria-live="polite"></p>
 
     <select id="conversionType">
@@ -25,13 +25,38 @@
       <option value="kgToPounds">Kilograms → Pounds</option>
     </select>
 
-    <button id="swapBtn" class="swap-btn" type="button">
-      Swap Units
-    </button>
+    <select id="precisionSelect">
+      <option value="2">2 decimal places</option>
+      <option value="3">3 decimal places</option>
+      <option value="4">4 decimal places</option>
+    </select>
 
-    <button id="convertBtn">Convert</button>
+    <div class="action-buttons">
+      <button id="convertBtn">Convert</button>
 
-    <p id="result"></p>
+      <button id="swapBtn" type="button">
+        Swap Units
+      </button>
+    </div>
+
+    <div class="result-row">
+      <p id="result"></p>
+      <button id="copyBtn" class="copy-btn" aria-label="Copy result" title="Copy">
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="2"/>
+          <rect x="2" y="2" width="13" height="13" rx="2" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </button>
+    </div>
+
+    <div id="toast" class="toast">Copied!</div>
 
   <!-- Conversion History -->
     <div class="history">

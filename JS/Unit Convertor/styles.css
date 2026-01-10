@@ -40,7 +40,6 @@ select {
   border-radius: 10px;
   border: 1px solid #ccc;
   font-size: 1rem;
-  margin-bottom: 15px;
 }
 
 input:focus,
@@ -64,10 +63,59 @@ button:hover {
   background: #78bea2;
 }
 
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+@media (max-width: 360px) {
+  .action-buttons {
+    flex-direction: column;
+  }
+}
+
+.action-buttons button {
+  flex: 1;
+}
+
 #result {
-  margin-top: 15px;
-  font-size: 1rem;
+  /* margin-top: 15px; */
+  font-size: 0.87rem;
+  color: #3b3e3d;
+  display: inline;
+  white-space: nowrap;
+}
+
+.result-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 40px;
+  margin-top: 10px;
+  white-space: nowrap;
+}
+
+.copy-btn {
+  width: auto;         
+  min-width: auto;
+  padding: 6px;           
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: #1f2d2a;
+}
+
+.copy-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.copy-btn.copied {
+  color: #8bcfb3;
 }
 
 select {
@@ -87,7 +135,7 @@ select {
 }
 
 .history {
-  margin-top: 20px;
+  margin-top: 10px;
   text-align: left;
 }
 
@@ -120,22 +168,6 @@ select {
   border-bottom: 1px solid #ddd;
 }
 
-.swap-btn {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  background: #8bcfb3; /* same as convert button */
-  color: white;
-  font-size: 1rem;
-  border-radius: 12px;
-  cursor: pointer;
-  margin-bottom: 15px;
-}
-
-.swap-btn:hover {
-  background: #78bea2;
-}
-
 .input-error {
   color: #d64545;
   font-size: 0.85rem;
@@ -162,3 +194,27 @@ input.shake {
   animation: shake 0.3s ease;
 }
 
+#precisionSelect {
+  margin-bottom: 15px;
+}
+
+.toast {
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  background: #8bcfb3; 
+  color: #ffffff;
+  padding: 14px 50px;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}

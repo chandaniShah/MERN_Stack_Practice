@@ -6,9 +6,17 @@ const historyList = document.getElementById("historyList");
 const clearHistoryBtn = document.getElementById("clearHistoryBtn");
 const swapBtn = document.getElementById("swapBtn");
 const inputError = document.getElementById("inputError");
+const precisionSelect = document.getElementById("precisionSelect");
+const copyBtn = document.getElementById("copyBtn");
+const toast = document.getElementById("toast");
 
 function kmToMiles(value) {
   return value * 0.621371;
+}
+
+function showToast() {
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 1500);
 }
 
 /* Meters to Feet */
@@ -46,6 +54,7 @@ function poundsToKg(value) {
 let history = [];
 let isSwapped = false; //controls swap direction
 let lastHistoryEntry = "";
+let precision = Number(precisionSelect.value);
 
 function showInputError(message) {
   inputError.textContent = message;
@@ -74,7 +83,7 @@ function performConversion() {
 
   const rawValue = valueInput.value.trim();
 
-  // Empty input → no error, no result
+  // Empty input  no error, no result
   if (rawValue === "") {
     clearInputError();
     result.textContent = "";
@@ -130,8 +139,8 @@ function performConversion() {
     default:
       return;
   }
-
-  const output = `${value} ${fromUnit} = ${convertedValue.toFixed(2)} ${toUnit}`;
+  // apply selected precision
+  const output = `${value} ${fromUnit} = ${convertedValue.toFixed(precision)} ${toUnit}`;
   result.textContent = output;
   return output;
 }
@@ -202,4 +211,32 @@ swapBtn.addEventListener("click", () => {
 
   const output = performConversion();
   if (output) commitToHistory(output);
+});
+
+precisionSelect.addEventListener("change", () => {
+  precision = Number(precisionSelect.value);
+  performConversion(); // live update, no history spam
+});
+
+copyBtn.addEventListener("click", async () => {
+  const text = result.textContent;
+  if (!text) return;
+
+  if (!navigator.clipboard) {
+    console.warn("Clipboard API not supported");
+    return;
+  }
+
+  try {
+    await navigator.clipboard.writeText(text);
+    copyBtn.classList.add("copied");
+
+    setTimeout(() => {
+      copyBtn.classList.remove("copied");
+    }, 1200);
+    
+    showToast();
+  } catch (err) {
+    console.error("Failed to copy:", err);
+  }
 });
