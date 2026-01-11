@@ -146,12 +146,34 @@ function performConversion() {
 }
 
 function commitToHistory(output) {
-  if (output !== lastHistoryEntry) {
-    history.unshift(output);
-    if (history.length > 5) history.pop();
-    renderHistory();
-    lastHistoryEntry = output;
-  }
+  if (output === lastHistoryEntry) return;
+
+  const historyItem = {
+    value: Number(valueInput.value),
+    conversionType: conversionType.value,
+    isSwapped,
+    precision,
+    output
+  };
+
+  history.unshift(historyItem);
+  if (history.length > 5) history.pop();
+
+  lastHistoryEntry = output;
+  renderHistory();
+}
+
+function renderHistory() {
+  historyList.innerHTML = "";
+
+  history.forEach((item, index) => {
+    const li = document.createElement("li");
+    li.textContent = item.output;
+    li.dataset.index = index; 
+    li.style.cursor = "pointer";
+
+    historyList.appendChild(li);
+  });
 }
 
 function swapUnits() {
@@ -171,15 +193,6 @@ function swapUnits() {
   performConversion(true); // recompute using SAME input
 }
 
-function renderHistory() {
-  historyList.innerHTML = "";
-
-  history.forEach(item => {
-    const li = document.createElement("li");
-    li.textContent = item;
-    historyList.appendChild(li);
-  });
-}
 
 clearHistoryBtn.addEventListener("click", () => {
   history = [];
@@ -196,18 +209,22 @@ valueInput.addEventListener("input", () => performConversion());
 
 conversionType.addEventListener("change", () => {
   isSwapped = false;
+  syncConversionLabel(); // reset label
   performConversion(); 
 });
+
 swapBtn.addEventListener("click", () => {
   if (!valueInput.value) return;
 
   isSwapped = !isSwapped;
+  
+  syncConversionLabel(); // always sync label
 
-  const option = conversionType.selectedOptions[0];
-  const parts = option.textContent.split("→");
-  if (parts.length === 2) {
-    option.textContent = `${parts[1].trim()} → ${parts[0].trim()}`;
-  }
+  // const option = conversionType.selectedOptions[0];
+  // const parts = option.textContent.split("→");
+  // if (parts.length === 2) {
+  //   option.textContent = `${parts[1].trim()} → ${parts[0].trim()}`;
+  // }
 
   const output = performConversion();
   if (output) commitToHistory(output);
@@ -234,9 +251,49 @@ copyBtn.addEventListener("click", async () => {
     setTimeout(() => {
       copyBtn.classList.remove("copied");
     }, 1200);
-    
+
     showToast();
   } catch (err) {
     console.error("Failed to copy:", err);
   }
 });
+
+// re-apply conversion on history click
+historyList.addEventListener("click", (e) => {
+  const li = e.target.closest("li");
+  if (!li) return;
+
+  const index = Number(li.dataset.index);
+  const item = history[index];
+  if (!item) return;
+
+  // Restore raw state
+  valueInput.value = item.value;
+  conversionType.value = item.conversionType;
+  isSwapped = item.isSwapped;
+  precision = item.precision;
+  precisionSelect.value = item.precision;
+
+  // normalize label
+  syncConversionLabel();
+
+  // Preview only (no history write)
+  performConversion();
+});
+
+// dropdown label state match 
+function syncConversionLabel() {
+  const option = conversionType.selectedOptions[0];
+  const map = {
+    kmToMiles: ["Kilometers", "Miles"],
+    mToFeet: ["Meters", "Feet"],
+    cmToInches: ["Centimeters", "Inches"],
+    kgToPounds: ["Kilograms", "Pounds"]
+  };
+
+  const [from, to] = map[conversionType.value];
+
+  option.textContent = isSwapped
+    ? `${to} → ${from}`
+    : `${from} → ${to}`;
+}

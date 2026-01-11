@@ -168,6 +168,9 @@ select {
   border-bottom: 1px solid #ddd;
 }
 
+#historyList li:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
 .input-error {
   color: #d64545;
   font-size: 0.85rem;
