@@ -82,11 +82,14 @@ button:hover {
 
 #result {
   /* margin-top: 15px; */
-  font-size: 0.87rem;
+  font-size: 1.05rem;
+  font-weight: 500;
   color: #3b3e3d;
   display: inline;
   white-space: nowrap;
+  transition: opacity 0.15s ease, transform 0.15s ease;
 }
+
 
 .result-row {
   display: inline-flex;
@@ -117,6 +120,16 @@ button:hover {
 .copy-btn.copied {
   color: #8bcfb3;
 }
+
+.copy-btn:active {
+  transform: scale(0.9);
+}
+
+.swap-btn {
+  background: #e6f2ef;
+  color: #1f2d2a;
+}
+
 
 select {
   width: 100%;
@@ -169,7 +182,7 @@ select {
 }
 
 #historyList li:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(139, 207, 179, 0.15);
 }
 .input-error {
   color: #d64545;
