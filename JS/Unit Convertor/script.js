@@ -9,6 +9,7 @@ const inputError = document.getElementById("inputError");
 const precisionSelect = document.getElementById("precisionSelect");
 const copyBtn = document.getElementById("copyBtn");
 const toast = document.getElementById("toast");
+const tooltip = document.querySelector(".tooltip");
 
 function kmToMiles(value) {
   return value * 0.621371;
@@ -239,20 +240,15 @@ copyBtn.addEventListener("click", async () => {
   const text = result.textContent;
   if (!text) return;
 
-  if (!navigator.clipboard) {
-    console.warn("Clipboard API not supported");
-    return;
-  }
-
   try {
     await navigator.clipboard.writeText(text);
-    copyBtn.classList.add("copied");
+
+    tooltip.textContent = "Copied!";
+    showToast();
 
     setTimeout(() => {
-      copyBtn.classList.remove("copied");
-    }, 1200);
-
-    showToast();
+      tooltip.textContent = "Copy to clipboard";
+    }, 1500);
   } catch (err) {
     console.error("Failed to copy:", err);
   }

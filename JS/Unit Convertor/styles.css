@@ -234,3 +234,44 @@ input.shake {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Copy tooltip */
+.copy-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1f2d2a;
+  color: #fff;
+  padding: 6px 10px;
+  font-size: 0.75rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+/* small arrow */
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: #1f2d2a transparent transparent transparent;
+}
+
+/* show on hover */
+.copy-wrapper:hover .tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-2px);
+}
