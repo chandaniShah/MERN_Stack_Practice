@@ -167,12 +167,18 @@ function commitToHistory(output) {
 function renderHistory() {
   historyList.innerHTML = "";
 
+  if (history.length === 0) {
+    const empty = document.createElement("li");
+    empty.textContent = "No conversions yet";
+    empty.classList.add("empty-history");
+    historyList.appendChild(empty);
+    return;
+  }
+
   history.forEach((item, index) => {
     const li = document.createElement("li");
-    li.textContent = item.output;
-    li.dataset.index = index; 
-    li.style.cursor = "pointer";
-
+    li.textContent = item.output || item;
+    li.dataset.index = index;
     historyList.appendChild(li);
   });
 }
@@ -198,7 +204,8 @@ function swapUnits() {
 clearHistoryBtn.addEventListener("click", () => {
   history = [];
   lastHistoryEntry = "";
-  historyList.innerHTML = "";
+  // historyList.innerHTML = "";
+  renderHistory();
 });
 
 convertBtn.addEventListener("click", () => {
@@ -257,7 +264,7 @@ copyBtn.addEventListener("click", async () => {
 // re-apply conversion on history click
 historyList.addEventListener("click", (e) => {
   const li = e.target.closest("li");
-  if (!li) return;
+  if (!li || li.classList.contains("empty-history")) return;
 
   const index = Number(li.dataset.index);
   const item = history[index];
@@ -293,3 +300,5 @@ function syncConversionLabel() {
     ? `${to} → ${from}`
     : `${from} → ${to}`;
 }
+
+renderHistory();

@@ -258,6 +258,14 @@ input.shake {
   transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
+.empty-history {
+  color: #777;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 10px 0;
+  cursor: default;
+}
+
 /* small arrow */
 .tooltip::after {
   content: "";
