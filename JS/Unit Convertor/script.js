@@ -200,6 +200,19 @@ function swapUnits() {
   performConversion(true); // recompute using SAME input
 }
 
+function updateConvertButtonState() {
+  const rawValue = valueInput.value.trim();
+  const value = Number(rawValue);
+
+  const isInvalid =
+    rawValue === "" ||
+    Number.isNaN(value) ||
+    value < 0;
+
+  convertBtn.disabled = isInvalid;
+  swapBtn.disabled = isInvalid; 
+}
+
 
 clearHistoryBtn.addEventListener("click", () => {
   history = [];
@@ -213,11 +226,15 @@ convertBtn.addEventListener("click", () => {
   if (output) commitToHistory(output);
 });
 
-valueInput.addEventListener("input", () => performConversion());
+valueInput.addEventListener("input", () => {
+  updateConvertButtonState(); 
+  performConversion();
+});
 
 conversionType.addEventListener("change", () => {
   isSwapped = false;
   syncConversionLabel(); // reset label
+  updateConvertButtonState();
   performConversion(); 
 });
 
@@ -240,6 +257,7 @@ swapBtn.addEventListener("click", () => {
 
 precisionSelect.addEventListener("change", () => {
   precision = Number(precisionSelect.value);
+  updateConvertButtonState();
   performConversion(); // live update, no history spam
 });
 
@@ -302,3 +320,5 @@ function syncConversionLabel() {
 }
 
 renderHistory();
+
+updateConvertButtonState();

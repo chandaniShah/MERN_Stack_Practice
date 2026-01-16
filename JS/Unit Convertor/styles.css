@@ -283,3 +283,9 @@ input.shake {
   opacity: 1;
   transform: translateX(-50%) translateY(-2px);
 }
+
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
