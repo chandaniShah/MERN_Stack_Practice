@@ -319,6 +319,44 @@ function syncConversionLabel() {
     : `${from} → ${to}`;
 }
 
+function clearInput() {
+  valueInput.value = "";
+  result.textContent = "";
+  clearInputError?.(); 
+  updateActionButtonsState?.();
+}
+
+document.addEventListener("keydown", (e) => {
+  // Ignore shortcuts when typing inside inputs/selects
+  const tag = document.activeElement.tagName;
+  if (tag === "INPUT" || tag === "SELECT") {
+    // Allow Enter even when input is focused
+    if (e.key !== "Enter") return;
+  }
+
+  switch (e.key) {
+    case "Enter":
+      if (!convertBtn.disabled) {
+        convertBtn.click();
+      }
+      break;
+
+    case "s":
+    case "S":
+      if (!swapBtn.disabled) {
+        swapBtn.click();
+      }
+      break;
+
+    case "Escape":
+      clearInput();
+      break;
+
+    default:
+      break;
+  }
+});
+
 renderHistory();
 
 updateConvertButtonState();
