@@ -101,7 +101,8 @@ function factorial(n) {
 // strings -  sequence of chars
 // template string - ``
 // difference btw creating string as a variable and as new String("Hello");
-// 
+// backslash, split, join(works on array), slice, substring, substr, 
+// toUpperCase, toLowerCase, trim, includes, indexOf, lastIndexOf, charAt, charCodeAt
 
 // print numbers from 1 to 50 using for loop
 
@@ -148,7 +149,68 @@ for (let i = 0; i < arr.length; i++) {
 
 // Print the squares of numbers from 1 to 10.
 
-for (let i = 1; i <= 10; i++) {
-  console.log(`Square of ${i} is ${i * i}`);
-} 
+// for (let i = 1; i <= 10; i++) {
+//   console.log(`Square of ${i} is ${i * i}`);
+// } 
 
+// let sentence = "let me see \"how\" this works";
+
+// console.log(sentence);
+
+// print all the elements of an array using loop
+// const fruits = ["apple", "banana", "cherry", "date"];
+
+// for (let i = 0; i < fruits.length; i++) {
+//   console.log(fruits[i]);
+// }
+
+
+// count elements in an array greater than 25 in an array
+// const numbers1 = [10, 25, 30, 45, 50, 15, 5, 60];
+
+// let count = 0;
+// for (let i = 0; i < numbers1.length; i++) {
+//   if (numbers1[i] > 25) {
+//     count++;
+//   }
+// }
+// console.log("Count of numbers greater than 25:", count);
+
+// replace negative numbers with zero in an array
+// const nums = [10, -5, 20, -15, 30, -25];
+// for (let i = 0; i < nums.length; i++) {
+//   if (nums[i] < 0) {
+//     nums[i] = 0;
+//   } 
+// }
+// console.log("Modified array:", nums);
+
+//  find the largest number in an array without using Math.max
+// const arr1 = [10, 25, 5, 60, 45, 30];  
+// let largest = arr1[0];
+// for (let i = 1; i < arr1.length; i++) {
+//   if (arr1[i] > largest) {
+//     largest = arr1[i];
+//   }
+// }
+// console.log("Largest number:", largest);
+
+// find the smallest number in an array without using Math.min
+// const arr2 = [10, 25, 5, 60, 45, 30];  
+// let smallest = arr2[0];  
+
+// for (let i = 1; i < arr2.length; i++) {
+//   if (arr2[i] < smallest) {
+//     smallest = arr2[i];
+//   } 
+// }
+// console.log("Smallest number:", smallest);
+
+// count numbers divisible by 3 in between 1 to 100
+let divBy3Count = 0;
+for (let i = 1; i <= 100; i++) {
+  if (i % 3 === 0) {
+    divBy3Count++;
+  }
+}
+console.log("Count of numbers divisible by 3 between 1 and 100:", divBy3Count);
